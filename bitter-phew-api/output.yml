@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM template with API defined in an external Swagger file along with
+  Lambda integrations and CORS configurations
+Resources:
+  WalkaboutApiGateway:
+    Properties:
+      CodeUri: s3://bitter-phew-api-store/bitter-phew/4f59af74f47b53d4fcfa012792e9e39d
+      Events:
+        ProxyApi:
+          Properties:
+            Method: ANY
+            Path: /{proxy+}
+          Type: Api
+      Handler: dist/lambda.handler
+      Runtime: nodejs6.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

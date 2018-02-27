@@ -1,0 +1,40 @@
+{
+  "name": "bitter-phew-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp scripts &&node ./dist/index.js",
+    "release": "gulp scripts && npm run pack && npm run deploy",
+    "pack":
+      "aws cloudformation package --template-file serverless.yml --output-template-file output.yml --s3-bucket bitter-phew-api-store --s3-prefix bitter-phew  --region ap-southeast-2",
+    "deploy":
+      "aws cloudformation deploy --template-file output.yml --stack-name bitter-phew-api --capabilities CAPABILITY_IAM --region ap-southeast-2"
+  },
+  "author": "Firaenix",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "inversify": "^4.11.1",
+    "inversify-express-utils": "^5.2.1",
+    "jsdom": "^11.6.2",
+    "reflect-metadata": "^0.1.12",
+    "serverless-http": "^1.5.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "@types/inversify-express-utils": "^2.0.0",
+    "@types/jsdom": "^11.0.4",
+    "concurrently": "^3.5.1",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^4.0.1",
+    "prettier": "^1.11.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  }
+}
